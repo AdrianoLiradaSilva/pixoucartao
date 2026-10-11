@@ -1,0 +1,60 @@
+:root{
+  --bg:#f3f6f5; --surface:#ffffff; --fg:#14211e; --muted:#5d6d69; --line:#dbe3e1;
+  --pix:#0f8f7e; --pix-soft:#dcf1ed; --card:#4b47c9; --card-soft:#e5e4fa;
+  --good:#11845b; --bad:#c2410c; --on-accent:#ffffff;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1514; --surface:#16201e; --fg:#e6eeec; --muted:#93a4a0; --line:#27332f;
+  --pix:#3cc7b2; --pix-soft:#143530; --card:#9a97ff; --card-soft:#25244a;
+  --good:#4ad39b; --bad:#ff8a57; --on-accent:#0e1514; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1514; --surface:#16201e; --fg:#e6eeec; --muted:#93a4a0; --line:#27332f;
+  --pix:#3cc7b2; --pix-soft:#143530; --card:#9a97ff; --card-soft:#25244a;
+  --good:#4ad39b; --bad:#ff8a57; --on-accent:#0e1514; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:17px/1.65 var(--body);padding:0 16px}
+.wrap{max-width:700px;margin:0 auto;padding-block:20px 56px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:28px;font-size:14px}
+.brand{font:800 18px var(--display);color:var(--fg);text-decoration:none;letter-spacing:-.01em}
+.brand .p{color:var(--pix)} .brand .c{color:var(--card)}
+.top nav{display:flex;gap:14px}
+a{color:var(--pix);text-underline-offset:3px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:800 clamp(28px,6.5vw,40px)/1.1 var(--display);margin:8px 0 12px;letter-spacing:-.02em;text-wrap:balance}
+.lead{font-size:19px;color:var(--muted);margin:0 0 10px}
+.meta{font-size:13.5px;color:var(--muted);margin:0 0 28px}
+h2{font:600 23px/1.25 var(--display);margin:36px 0 10px;text-wrap:balance}
+h3{font:600 18px/1.3 var(--display);margin:24px 0 6px}
+p,li{max-width:66ch}
+ul,ol{padding-left:22px}
+li{margin-bottom:6px}
+strong{font-weight:600}
+.num{font-family:var(--mono);font-size:.93em;white-space:nowrap}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:20px 0}
+.box.pix{background:var(--pix-soft);border-color:transparent}
+.box.card{background:var(--card-soft);border-color:transparent}
+.box p{margin:0}
+.box p+p{margin-top:8px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:15px;background:var(--surface);border-radius:12px;overflow:hidden}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{white-space:normal;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td{font-family:var(--mono);font-size:14px}
+th:first-child,td:first-child{text-align:left;font-family:var(--body)}
+.pos{color:var(--good)} .neg{color:var(--bad)}
+.cta{display:flex;flex-direction:column;gap:10px;align-items:flex-start;background:var(--fg);color:var(--bg);border-radius:14px;padding:20px;margin:32px 0}
+.cta p{margin:0;font:600 19px/1.3 var(--display)}
+.btn{display:inline-flex;font:600 15px var(--body);border-radius:10px;padding:10px 16px;text-decoration:none;background:var(--pix);color:var(--on-accent)}
+.related{border-top:1px solid var(--line);margin-top:40px;padding-top:20px}
+.related ul{list-style:none;padding:0}
+.list{list-style:none;padding:0;display:flex;flex-direction:column;gap:14px}
+.list a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--fg)}
+.list a b{display:block;font:600 19px/1.3 var(--display);margin-bottom:4px}
+.list a span{color:var(--muted);font-size:15px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;font-size:13.5px;color:var(--muted)}
+footer nav{display:flex;flex-wrap:wrap;gap:16px;margin-top:6px}
+:focus-visible{outline:2px solid var(--pix);outline-offset:2px}
