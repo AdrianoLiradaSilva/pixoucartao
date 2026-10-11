@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script src="/consentimento.js" defer></script>
+<title>Teste fechado | Pix ou Cartão?</title>
+<meta name="description" content="Roteiro e formulário do teste fechado do Pix ou Cartão?.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0f8f7e">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/estilo.css">
+<style>
+.steps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.steps li{max-width:65ch}
+form.beta{display:flex;flex-direction:column;gap:22px}
+.q{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.q legend,.q .qt{font-weight:600;padding:0;margin:0 0 4px;max-width:60ch}
+.q small{color:var(--muted);font-size:13px;font-weight:400}
+.opts{display:flex;flex-direction:column;gap:8px}
+.scale{display:flex;flex-wrap:wrap;gap:6px}
+.scale label{position:relative;display:flex;align-items:center;justify-content:center;min-width:42px;height:40px;padding:0 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font:500 14px var(--mono);cursor:pointer}
+.scale input{position:absolute;opacity:0;width:1px;height:1px}
+.scale label:has(input:checked){background:var(--card);border-color:var(--card);color:var(--on-accent)}
+.scale label:has(input:focus-visible){outline:2px solid var(--pix);outline-offset:2px}
+.scale.n11{gap:4px;max-width:520px}
+.scale.n11 label{flex:1 1 0;min-width:0;padding:0}
+.ends{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);max-width:520px}
+textarea.t{width:100%;min-height:88px;font:15px/1.45 var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
+textarea.t:focus{outline:2px solid var(--pix);outline-offset:1px}
+.inp input.nome{font:500 16px var(--body)}
+.bf{position:absolute;left:-9999px}
+.send{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.send .btn{font-size:15px;padding:11px 18px}
+</style>
+</head>
+<body>
+<div class="wrap prose">
+  <span class="eyebrow">Teste fechado · até 1º de novembro</span>
+  <h1>Obrigado por testar o Pix ou Cartão?</h1>
+  <p class="lead">Leva cerca de 10 minutos. Faça os 4 passos abaixo e depois responda ao formulário no fim da página. Vale tudo: elogio, crítica e dúvida. O que não funcionou é o que mais ajuda.</p>
+
+  <section class="panel" aria-labelledby="roteiro">
+    <h2 id="roteiro">O que fazer</h2>
+    <ol class="steps">
+      <li><strong>Simule uma compra de verdade.</strong> <a href="/" target="_blank" rel="noopener">Abra a calculadora</a> e use uma compra que você fez ou pretende fazer: o preço no cartão, o preço no Pix e o número de parcelas.</li>
+      <li><strong>Leia o resultado.</strong> Veja se você entenderia o que fazer sem ninguém explicar.</li>
+      <li><strong>Mude alguma coisa.</strong> Troque o número de parcelas ou o campo "Rendendo" (quanto do CDI o seu dinheiro rende) e veja se o resultado muda como você espera.</li>
+      <li><strong>Leia um artigo.</strong> Escolha o que mais chamar a sua atenção na <a href="/artigos/" target="_blank" rel="noopener">lista de artigos</a>.</li>
+    </ol>
+    <p class="note">De preferência, teste no celular, que é como a maioria das pessoas vai usar o site.</p>
+  </section>
+
+  <h2>Sua opinião</h2>
+  <form class="beta" name="beta" method="POST" action="/beta/obrigado/" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="subject" value="Nova resposta do teste fechado (%{submissionId})">
+    <p class="bf" aria-hidden="true"><label>Não preencha: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+    <fieldset class="q">
+      <legend>1. Em que aparelho você testou?</legend>
+      <div class="opts">
+        <label class="check"><input type="radio" name="aparelho" value="Celular" required> Celular</label>
+        <label class="check"><input type="radio" name="aparelho" value="Computador"> Computador</label>
+        <label class="check"><input type="radio" name="aparelho" value="Tablet"> Tablet</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="q">
+      <legend>2. Você conseguiu fazer a simulação?</legend>
+      <div class="opts">
+        <label class="check"><input type="radio" name="simulacao" value="Sim, sem ajuda" required> Sim, sem ajuda</label>
+        <label class="check"><input type="radio" name="simulacao" value="Sim, mas com dificuldade"> Sim, mas com alguma dificuldade</label>
+        <label class="check"><input type="radio" name="simulacao" value="Não consegui"> Não consegui</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="q">
+      <legend>3. Você entendeu o resultado?</legend>
+      <div class="scale">
+        <label><input type="radio" name="entendeu" value="1" required>1</label>
+        <label><input type="radio" name="entendeu" value="2">2</label>
+        <label><input type="radio" name="entendeu" value="3">3</label>
+        <label><input type="radio" name="entendeu" value="4">4</label>
+        <label><input type="radio" name="entendeu" value="5">5</label>
+      </div>
+      <div class="ends" style="max-width:250px"><span>Nada</span><span>Totalmente</span></div>
+    </fieldset>
+
+    <fieldset class="q">
+      <legend>4. O resultado mudaria a forma como você paga essa compra?</legend>
+      <div class="opts">
+        <label class="check"><input type="radio" name="mudaria" value="Sim"> Sim</label>
+        <label class="check"><input type="radio" name="mudaria" value="Talvez"> Talvez</label>
+        <label class="check"><input type="radio" name="mudaria" value="Não"> Não</label>
+      </div>
+    </fieldset>
+
+    <div class="q">
+      <label class="qt" for="confuso">5. O que mais confundiu ou atrapalhou?</label>
+      <textarea class="t" id="confuso" name="confuso"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="qt" for="erro">6. Viu alguma conta estranha, erro ou algo que não funcionou? <small>Conte onde foi.</small></label>
+      <textarea class="t" id="erro" name="erro"></textarea>
+    </div>
+
+    <fieldset class="q">
+      <legend>7. De 0 a 10, quanto você indicaria o site para um amigo?</legend>
+      <div class="scale n11">
+        <label><input type="radio" name="indicaria" value="0">0</label>
+        <label><input type="radio" name="indicaria" value="1">1</label>
+        <label><input type="radio" name="indicaria" value="2">2</label>
+        <label><input type="radio" name="indicaria" value="3">3</label>
+        <label><input type="radio" name="indicaria" value="4">4</label>
+        <label><input type="radio" name="indicaria" value="5">5</label>
+        <label><input type="radio" name="indicaria" value="6">6</label>
+        <label><input type="radio" name="indicaria" value="7">7</label>
+        <label><input type="radio" name="indicaria" value="8">8</label>
+        <label><input type="radio" name="indicaria" value="9">9</label>
+        <label><input type="radio" name="indicaria" value="10">10</label>
+      </div>
+      <div class="ends"><span>Não indicaria</span><span>Indicaria com certeza</span></div>
+    </fieldset>
+
+    <div class="q">
+      <label class="qt" for="faltou">8. O que faltou ou o que você mudaria?</label>
+      <textarea class="t" id="faltou" name="faltou"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="qt" for="nome">9. Seu nome <small>(opcional, só para o Adriano saber quem respondeu)</small></label>
+      <div class="inp"><input class="nome" id="nome" name="nome" type="text" autocomplete="name" maxlength="80"></div>
+    </div>
+
+    <div class="send">
+      <button class="btn" type="submit">Enviar respostas</button>
+      <p class="note">As respostas ficam guardadas na Netlify, a hospedagem do site, e servem só para melhorar o site. São apagadas até 31 de dezembro de 2026. Veja a <a href="/privacidade/#beta">Política de privacidade</a>.</p>
+    </div>
+  </form>
+
+  <footer><nav class="legal" aria-label="Informações legais"><a href="/sobre/">Sobre</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos de uso</a></nav></footer>
+</div>
+</body>
+</html>
