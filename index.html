@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pix ou Cartão? Calculadora de parcelamento e desconto no Pix</title>
+<meta name="description" content="Descubra se vale pagar no Pix com desconto ou parcelar no cartão, considerando quanto o seu dinheiro renderia guardado. Com CDI atualizado e Imposto de Renda.">
+<link rel="canonical" href="https://pixoucartao.com.br/">
+<meta name="theme-color" content="#0f8f7e">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pix ou Cartão?">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Pix ou Cartão? Calculadora de parcelamento e desconto no Pix">
+<meta property="og:description" content="Descubra se vale pagar no Pix com desconto ou parcelar no cartão, considerando quanto o seu dinheiro renderia guardado. Com CDI atualizado e Imposto de Renda.">
+<meta property="og:url" content="https://pixoucartao.com.br/">
+<meta property="og:image" content="https://pixoucartao.com.br/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Pix ou Cartão?", "url": "https://pixoucartao.com.br/", "applicationCategory": "FinanceApplication", "operatingSystem": "Todos", "inLanguage": "pt-BR", "description": "Descubra se vale pagar no Pix com desconto ou parcelar no cartão, considerando quanto o seu dinheiro renderia guardado. Com CDI atualizado e Imposto de Renda.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "BRL"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/estilo.css">
+<style>
+.faq details{border-top:1px solid var(--line);padding-block:12px}
+.faq details:first-of-type{border-top:0;padding-top:0}
+.faq summary{cursor:pointer;font-weight:600}
+.faq details p{margin:8px 0 0;max-width:65ch;color:var(--fg)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Pagar no <span class="p">Pix</span> ou parcelar no <span class="c">cartão</span>?</h1>
+    <p class="lead">Compare o preço à vista com o parcelamento, considerando quanto o dinheiro renderia guardado enquanto você paga as parcelas.</p>
+  </header>
+
+  <section class="panel" aria-labelledby="t-compra">
+    <h2 id="t-compra">A compra</h2>
+    <div class="grid">
+      <label class="f" for="cartao">Preço no cartão
+        <span class="inp"><span>R$</span><input id="cartao" type="number" inputmode="decimal" min="0" step="0.01" value="2000"></span>
+      </label>
+      <label class="f" for="desc">Desconto no Pix
+        <span class="inp"><input id="desc" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="5"><span>%</span></span>
+      </label>
+      <label class="f" for="pix">Preço no Pix
+        <span class="inp"><span>R$</span><input id="pix" type="number" inputmode="decimal" min="0" step="0.01" value="1900"></span>
+      </label>
+    </div>
+    <div class="stack">
+      <span class="eyebrow" id="lbl-parc">Parcelas</span>
+      <div class="chips" id="chips" role="group" aria-labelledby="lbl-parc"></div>
+    </div>
+    <div class="row">
+      <div class="stack">
+        <span class="eyebrow" id="lbl-juros">Juros do cartão</span>
+        <div class="seg" role="group" aria-labelledby="lbl-juros">
+          <button id="semj" type="button" aria-pressed="true">Sem juros</button>
+          <button id="comj" type="button" aria-pressed="false">Com juros</button>
+        </div>
+      </div>
+      <div class="stack" id="modoWrap" hidden>
+        <span class="eyebrow" id="lbl-modo">Você sabe</span>
+        <div class="seg small" role="group" aria-labelledby="lbl-modo">
+          <button id="mParc" type="button" aria-pressed="true">O valor da parcela</button>
+          <button id="mTaxa" type="button" aria-pressed="false">A taxa ao mês</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid" id="jurosWrap" hidden>
+      <label class="f" for="parc" id="parcWrap"><span id="parcLbl">Valor de cada parcela</span>
+        <span class="inp"><span>R$</span><input id="parc" type="number" inputmode="decimal" min="0" step="0.01" value="230"></span>
+      </label>
+      <label class="f" for="taxa" id="taxaWrap" hidden>Taxa ao mês
+        <span class="inp"><input id="taxa" type="number" inputmode="decimal" min="0" step="0.01" value="2.99"><span>%</span></span>
+      </label>
+    </div>
+    <p class="hint" id="jurosInfo" hidden></p>
+  </section>
+
+  <section class="panel" aria-labelledby="t-inv">
+    <h2 id="t-inv">Onde o dinheiro ficaria guardado</h2>
+    <div class="grid">
+      <label class="f" for="cdi">CDI ao ano
+        <span class="inp"><input id="cdi" type="number" inputmode="decimal" min="0" step="0.01" value="13.65"><span>%</span></span>
+      </label>
+      <label class="f" for="pct">Rendendo
+        <span class="inp"><input id="pct" type="number" inputmode="decimal" min="0" step="1" value="100"><span>% do CDI</span></span>
+      </label>
+    </div>
+    <div class="rate" id="cdiNote" aria-live="polite"></div>
+    <label class="check" for="ir"><input id="ir" type="checkbox" checked> Descontar Imposto de Renda (CDB, Tesouro)</label>
+    <p class="note">Desmarque o IR para LCI e LCA, que são isentas.</p>
+  </section>
+
+  <section class="verdict" id="verdict" aria-live="polite">
+    <span class="eyebrow" id="vEyebrow"></span>
+    <span class="big" id="vBig"></span>
+    <p id="vText"></p>
+    <div class="share">
+      <a class="btn" id="wa" href="https://wa.me/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+        Enviar no WhatsApp
+      </a>
+      <button class="btn ghost" id="copy" type="button">Copiar resultado</button>
+      <span id="copyMsg" role="status"></span>
+    </div>
+    <textarea id="shareText" rows="3" readonly hidden aria-label="Texto do resultado para copiar"></textarea>
+  </section>
+
+  <section class="stats" id="stats" aria-label="Resumo da opção escolhida"></section>
+
+  <section class="panel" aria-labelledby="t-tab">
+    <h2 id="t-tab">Todas as opções, de 1x a 12x</h2>
+    <p class="note" id="tabNote">Sobra no fim: quanto fica no investimento depois da última parcela, se você guardar o valor do Pix e for pagando a fatura com ele. Toque numa linha para selecionar.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Parcelas</th><th>Valor da parcela</th><th>Total no cartão</th><th>Sobra no fim</th><th class="barcell"><span class="sr">Comparação com o Pix</span></th></tr></thead>
+      <tbody id="tab"></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="t-ext">
+    <h2 id="t-ext">Extrato mês a mês</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Mês</th><th>Rendimento líquido</th><th>Parcela paga</th><th>Saldo guardado</th></tr></thead>
+      <tbody id="ext"></tbody>
+    </table></div>
+    <p class="note">Saldo negativo é o que você teria de tirar do próprio bolso para completar as parcelas.</p>
+  </section>
+
+  <section class="panel faq" aria-labelledby="t-faq">
+    <h2 id="t-faq">Perguntas frequentes</h2>
+    <details><summary>Parcelar sem juros sempre compensa?</summary>
+      <p>Quando o preço é o mesmo no Pix e no cartão, quase sempre sim: o dinheiro rende enquanto você paga as parcelas. Quando o Pix tem desconto, a resposta depende do tamanho do desconto, do número de parcelas e do rendimento.</p></details>
+    <details><summary>A partir de quanto desconto o Pix ganha?</summary>
+      <p>Com o CDI de 13,65% ao ano (outubro de 2026), dinheiro rendendo 100% do CDI e IR descontado, o desconto que empata com o parcelamento sem juros fica perto de 1,6% em 3x, 2,9% em 6x, 4,5% em 10x e 5,4% em 12x. Acima disso, o Pix compensa. A calculadora refaz a conta com os seus números.</p></details>
+    <details><summary>O que é CET?</summary>
+      <p>Custo Efetivo Total: o custo real de um parcelamento com juros, somando juros, IOF e tarifas, expresso em porcentagem ao ano. Se a loja mostrar o valor da parcela, escolha "Com juros" e "O valor da parcela" que a calculadora encontra a taxa por você.</p></details>
+    <details><summary>Por que o Imposto de Renda entra na conta?</summary>
+      <p>CDB, Tesouro Direto e fundos de renda fixa pagam IR sobre o rendimento, com alíquota que cai conforme o prazo: 22,5% até 180 dias, 20% até 360, 17,5% até 720 e 15% depois disso. LCI e LCA são isentas; nesse caso, desmarque a opção.</p></details>
+    <details><summary>Os valores que eu digito ficam salvos?</summary>
+      <p>Não. O cálculo acontece no seu próprio navegador e nada do que você digita é enviado para nós. Veja a <a href="/privacidade/">política de privacidade</a>.</p></details>
+  </section>
+
+  <footer>
+    <p class="note">Como o cálculo funciona: a primeira fatura vence 30 dias após a compra. Cada parcela sai do investimento e paga IR sobre o próprio rendimento, pelo tempo que ficou aplicada (22,5% até 180 dias, 20% até 360, 17,5% até 720). O percentual do CDI é aplicado à taxa diária, como fazem bancos e corretoras.</p>
+    <p class="note">Simulação educativa, não é recomendação de investimento. Versão 1.0, outubro de 2026.</p>
+    <nav class="legal" aria-label="Informações legais"><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos de uso</a></nav>
+  </footer>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
