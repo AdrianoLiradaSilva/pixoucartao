@@ -23,12 +23,6 @@
     X-Frame-Options = "SAMEORIGIN"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
-# Páginas do teste fechado não aparecem no Google
-[[headers]]
-  for = "/beta/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-
 [[headers]]
   for = "/og.png"
   [headers.values]
