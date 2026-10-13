@@ -93,6 +93,13 @@
         <span class="inp"><input id="pct" type="number" inputmode="decimal" min="0" step="1" value="100"><span>% do CDI</span></span>
       </label>
     </div>
+    <div class="chips" id="pctPresets" role="group" aria-label="Atalhos de rendimento">
+      <button class="chip wide" type="button" data-pct="100">100%</button>
+      <button class="chip wide" type="button" data-pct="105">105%</button>
+      <button class="chip wide" type="button" data-pct="115">115%</button>
+      <button class="chip wide" type="button" data-pct="120">120%</button>
+    </div>
+    <p class="hint" id="tetoNote" hidden></p>
     <div class="rate" id="cdiNote" aria-live="polite"></div>
     <label class="check" for="ir"><input id="ir" type="checkbox" checked> Descontar Imposto de Renda (CDB, Tesouro)</label>
     <p class="note">Desmarque o IR para LCI e LCA, que são isentas.</p>
@@ -114,6 +121,19 @@
   </section>
 
   <section class="stats" id="stats" aria-label="Resumo da opção escolhida"></section>
+
+  <aside class="panel parceiro" aria-labelledby="t-onde">
+    <span class="tag">Publicidade · link de indicação</span>
+    <h2 id="t-onde">Onde deixar o dinheiro rendendo</h2>
+    <p>A conta acima supõe que o dinheiro fica rendendo enquanto você paga as parcelas. Algumas contas digitais pagam mais que 100% do CDI, sempre com condição e teto:</p>
+    <ul class="opcoes">
+      <li><b>Mercado Pago:</b> Cofrinhos rendem 115% do CDI até R$ 5 mil para quem leva ao menos R$ 1 mil por mês para a conta, e 120% até R$ 10 mil para assinantes do Meli+. Acima do teto, 100%.
+        <span class="bonus">Abrindo a conta pelo nosso convite, você ganha R$ 20 de desconto no primeiro pagamento de pelo menos R$ 50, em até 7 dias.</span>
+        <span class="acoes"><a class="btn" id="indMP" href="https://mpago.li/1n59qHv" target="_blank" rel="sponsored nofollow noopener">Abrir conta no Mercado Pago</a><button class="btn ghost" type="button" data-sim="115">Simular com 115%</button></span></li>
+      <li><b>Nubank:</b> a Caixinha Turbo rende 115% do CDI para quem movimenta ao menos R$ 900 por mês, e 120% até R$ 10 mil para assinantes do Nubank+.</li>
+    </ul>
+    <p class="note">Regras conferidas em 13/10/2026; os bancos podem mudá-las. O site recebe uma recompensa do Mercado Pago quando alguém abre a conta pelo convite e a usa. Isso não muda o resultado da calculadora, e não é recomendação de investimento. <a href="/termos/">Saiba mais</a>.</p>
+  </aside>
 
   <section class="panel" aria-labelledby="t-tab">
     <h2 id="t-tab">Todas as opções, de 1x a 12x</h2>

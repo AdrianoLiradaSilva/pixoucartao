@@ -48,6 +48,19 @@ $('cartao').addEventListener('input',()=>{syncPrices();calc()});
 $('desc').addEventListener('input',()=>{ultimo='desc';syncPrices();calc()});
 $('pix').addEventListener('input',()=>{ultimo='pix';syncPrices();calc()});
 ['parc','taxa','pct','ir'].forEach(id=>$(id).addEventListener('input',calc));
+const setPct=v=>{$('pct').value=v;calc()};
+[...$('pctPresets').children].forEach(b=>b.onclick=()=>setPct(+b.dataset.pct));
+document.querySelectorAll('[data-sim]').forEach(b=>b.onclick=()=>{setPct(+b.dataset.sim);$('verdict').scrollIntoView({behavior:'smooth',block:'center'})});
+$('indMP').addEventListener('click',()=>{if(typeof gtag==='function')gtag('event','clique_indicacao',{parceiro:'mercado_pago'})});
+function renderTeto(pix){
+  const p=num('pct'),el=$('tetoNote');
+  [...$('pctPresets').children].forEach(b=>b.setAttribute('aria-pressed',+b.dataset.pct===p));
+  if(p<=100){el.hidden=true;return}
+  let t=`Contas digitais costumam pagar mais de 100% do CDI só até um teto (por exemplo, R$ 5 mil a 115% ou R$ 10 mil a 120%) e com condições. Acima do teto, o valor rende 100%.`;
+  const teto=p>=120?10000:5000;
+  if(pix>teto)t+=` Com ${brl(pix)} guardados, parte do valor passaria do teto, e a sobra real seria menor que a mostrada.`;
+  el.textContent=t;el.hidden=false;
+}
 $('cdi').addEventListener('input',()=>{cdiEditado=Math.abs(num('cdi')-cdiOficial.v)>0.004;renderCdi();calc()});
 
 function dataBR(iso){const [y,m,d]=iso.split('-');return `${d}/${m}/${y}`}
@@ -106,6 +119,7 @@ function calc(){
     else{const total=num('parc')*n;i=rateFromTotal(card,n,total)}
   }
   const o={pix,card,i,g:monthlyGross(num('cdi'),num('pct')),ir:$('ir').checked};
+  renderTeto(pix);
 
   $('semj').setAttribute('aria-pressed',!juros);$('comj').setAttribute('aria-pressed',juros);
   $('modoWrap').hidden=!juros;$('jurosWrap').hidden=!juros;$('jurosInfo').hidden=!juros;
